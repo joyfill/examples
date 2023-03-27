@@ -1,4 +1,4 @@
-import { Portal } from "../../../dist/joyfill.esm.full.js";
+import { Portal } from "@joyfill/sdk-js/dist/joyfill.esm.full.js";
 
 // you will want to use our list users endpoint to get
 // users and their user access tokens
