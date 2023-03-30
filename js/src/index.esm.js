@@ -9,9 +9,10 @@ const userAccessToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbiI6IjY0Mj
 // like mode | userAccessToken
 Portal.load({
   userAccessToken: userAccessToken,
-  mode: 'edit', // fill | edit | readonly
+  mode: 'edit', // fill | edit | readonly (only applies if feature is "document")
+  feature: 'document', // document | documents
   mountOn: '#joyfill-portal',
-  document: 'doc_642221ca8553d877267f1b20',
+  documentIdentifier: 'doc_642221ca8553d877267f1b20',
   submitText: 'Save Changes',
   onUploaded: ({ type, document, fileUpload }) => {
     console.log('onUploaded: ', type)
