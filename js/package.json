@@ -16,6 +16,6 @@
   },
   "keywords": [],
   "dependencies": {
-    "@joyfill/sdk-js": "^1.0.2"
+    "@joyfill/sdk-js": "^1.0.7"
   }
 }

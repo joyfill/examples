@@ -4,7 +4,7 @@ window.onload = function() {
   const Joyfill = window.joyfill;
 
   Joyfill.Portal.load({
-    userAccessToken: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbiI6IjYzZTRlZTZmZWU4OWM4ZGU4NDYwOWVhOCIsImV4cGlyZXNPbiI6MTY4MzY5MTE5OTk5OX0.g_NFaYIeh-C238RxIGG1FiFWn9TNJnz1n29VA3tezSk',
+    userAccessToken: '',
     mountOn: '#joyfill-portal',
     mode: 'edit',
     onUploaded: async ({ type, document, fileUploads }) => {
