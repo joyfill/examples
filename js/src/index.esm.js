@@ -2,7 +2,7 @@ import { Portal } from "@joyfill/sdk-js/dist/joyfill.esm.full.js";
 
 // you will want to use our list users endpoint to get
 // users and their user access tokens
-const userAccessToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbiI6IjY0MjIyMjU0NjE2NzcyZmFmYzdhNzc2MiJ9.vjw0KYOQ6hlo98ar7BDz-6ADYZndV4hwFRF4XAQtz58';
+const userAccessToken = 'test123eyJ0b2tlbiI6IjY0MjVlNWZhYzc2YmRiMjZjOTM2N2U2NCIsImV4cGlyZXNPbiI6MTY4ODE4Mzk5OTk5OX0';
 
 // call this anytime you want to insert the Joyfill Portal
 // you can pass any values to the JoyDoc from here just
@@ -10,9 +10,8 @@ const userAccessToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbiI6IjY0Mj
 Portal.load({
   userAccessToken: userAccessToken,
   mode: 'edit', // fill | edit | readonly (only applies if feature is "document")
-  feature: 'document', // document | documents
   mountOn: '#joyfill-portal',
-  documentIdentifier: 'doc_642221ca8553d877267f1b20',
+  documentIdentifier: 'doc_642afe732827750640',
   submitText: 'Save Changes',
   onUploaded: ({ type, document, fileUpload }) => {
     console.log('onUploaded: ', type)
