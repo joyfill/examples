@@ -1,4 +1,4 @@
-# examples
+# Joyfill.io/developers Examples
 Various example projects to help get you started quickly with the Joyfill forms platform. Joyfill sdk for embeddable UI and components can be tested here.
 
 ## Install
