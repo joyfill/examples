@@ -1,10 +1,13 @@
+# Overview
+
+* **Embedded UI Component Demo** - See `src/demos/joydoc`. This will show you how to simply use the Joyfill Embeddable UI Component to edit/create forms and fill the form with data.
+* **Templates Workflow Demo** - See `src/demos/templates`. This will show you how to use Joyfill API to create a template based workflow with your documents.
+
 # Getting Started 
 
 * **Step 1:** Read and Complete the (Joyfill Getting Started Docs)[https://dash.readme.com/project/joyfill/v1.1/docs/quick-start]
 * **Step 2:** Replace `userAccessToken` at the top of file `src/api.js` to enable the live API.
 * **Step 3:** Run `yarn start` in your terminal
-
-# Overview
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
