@@ -7,7 +7,7 @@
 
 * **Step 1:** Read and Complete the [Joyfill Getting Started Docs](https://dash.readme.com/project/joyfill/v1.1/docs/quick-start)
 * **Step 2:** Replace `userAccessToken` at the top of file `src/api.js` to enable the live API.
-* **Step 3:** Run `yarn start` in your terminal
+* **Step 3:** Run `yarn start` in your terminal to run the project
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
