@@ -5,7 +5,7 @@
 
 # Getting Started 
 
-* **Step 1:** Read and Complete the (Joyfill Getting Started Docs)[https://dash.readme.com/project/joyfill/v1.1/docs/quick-start]
+* **Step 1:** Read and Complete the [Joyfill Getting Started Docs](https://dash.readme.com/project/joyfill/v1.1/docs/quick-start)
 * **Step 2:** Replace `userAccessToken` at the top of file `src/api.js` to enable the live API.
 * **Step 3:** Run `yarn start` in your terminal
 
