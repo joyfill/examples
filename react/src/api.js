@@ -1,8 +1,44 @@
 
-// 2. setup helpers
-export const joyfillGenerate = async (identifier, userAccessToken) => {
+const userAccessToken = "<REPLACE_USER_ACCESS_TOKEN>";
+const apiBaseUrl = "https://api-joy.joyfill.io";
 
-  const response = await fetch("https://api-joy.joyfill.io/v1/documents/exports/pdf", {
+export const createTemplate = async (doc) => {
+
+  const response = await fetch(`${apiBaseUrl}/v1/templates`, {
+    method: 'POST',
+    mode:'cors',
+    headers: {
+      Authorization: `Bearer ${userAccessToken}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(doc)
+  });
+
+  const data = await response.json();
+  return data;
+
+};
+
+export const listTemplates = async () => {
+
+  const response = await fetch(`${apiBaseUrl}/v1/templates?page=1&limit=25`, {
+    method: 'GET',
+    mode:'cors',
+    headers: {
+      Authorization: `Bearer ${userAccessToken}`,
+      'Content-Type': 'application/json'
+    },
+  });
+
+  const data = await response.json();
+
+  return data;
+
+};
+
+export const exportDocument = async (identifier, userAccessToken) => {
+
+  const response = await fetch(`${apiBaseUrl}/v1/documents/exports/pdf`, {
     method: 'POST',
     mode:'cors',
     headers: {
@@ -18,10 +54,25 @@ export const joyfillGenerate = async (identifier, userAccessToken) => {
 
 }
 
+export const listDocumentsForTemplate = async (templateIdentifier) => {
 
-export const joyfillRetrieve = async (documentIdentifier, userAccessToken) => {
+  const response = await fetch(`${apiBaseUrl}/v1/documents?page=1&limit=25&stage=all&template=${templateIdentifier}`, {
+    method: 'GET',
+    mode: 'cors',
+    headers: {
+      Authorization: `Bearer ${userAccessToken}`,
+      'Content-Type': 'application/json'
+    },
+  });
 
-  const response = await fetch(`https://api-joy.joyfill.io/v1/documents/${documentIdentifier}`, {
+  const data = await response.json();
+
+  return data;
+}
+
+export const retrieveDocument = async (documentIdentifier) => {
+
+  const response = await fetch(`${apiBaseUrl}/v1/documents/${documentIdentifier}`, {
     method: 'GET',
     mode: 'cors',
     headers: {
@@ -34,10 +85,9 @@ export const joyfillRetrieve = async (documentIdentifier, userAccessToken) => {
   return data;
 }
 
+export const saveDocument = async (doc) => {
 
-export const joyfillSave = async (doc, userAccessToken) => {
-
-  const response = await fetch(`https://api-joy.joyfill.io/v1/documents/${doc.identifier}`, {
+  const response = await fetch(`${apiBaseUrl}/v1/documents/${doc.identifier}`, {
     method: 'POST',
     mode:'cors',
     headers: {
@@ -50,6 +100,23 @@ export const joyfillSave = async (doc, userAccessToken) => {
       name: "ACME_WorkOrder",
       files: [doc.files[0]]
     })
+  });
+
+  const data = await response.json();
+  return data;
+
+};
+
+export const createDocument = async (doc) => {
+
+  const response = await fetch(`${apiBaseUrl}/v1/documents`, {
+    method: 'POST',
+    mode:'cors',
+    headers: {
+      Authorization: `Bearer ${userAccessToken}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(doc)
   });
 
   const data = await response.json();
@@ -76,7 +143,7 @@ export const getDataUriForFileUpload = async (fileUpload) => {
 
 export const uploadFileAsync = async (documentId, dataUri, userAccessToken) => {
 
-  const response = await fetch(`https://api-joy.joyfill.io/v1/documents/${documentId}/files`, {
+  const response = await fetch(`${apiBaseUrl}/v1/documents/${documentId}/files/datauri`, {
     method: 'POST', // *GET, POST, PUT, DELETE, etc.
     mode: 'no-cors', // no-cors, *cors, same-origin
     headers: {
@@ -95,7 +162,7 @@ export const convertPDFPagesToBase64Async = async (dataUri, userAccessToken) => 
 
   try {
 
-    const response = await fetch(`https://api-joy.joyfill.io/v1/utilities/pdf/to/png`, {
+    const response = await fetch(`${apiBaseUrl}/v1/utilities/pdf/to/png/datauri`, {
       method: 'POST', // *GET, POST, PUT, DELETE, etc.
       mode: 'no-cors', // no-cors, *cors, same-origin
       headers: {
