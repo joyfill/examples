@@ -34,7 +34,7 @@ Use the following code to embed your Portal into your app. Also for more help ru
   </body>
 </html>
 
-// /index.js
+// /index.js file
 import { Portal } from "@joyfill/sdk-js/dist/joyfill.esm.js";
 
 /**
