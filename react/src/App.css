@@ -1,0 +1,89 @@
+.App {
+}
+
+.App-logo {
+  height: 7vmin;
+  pointer-events: none;
+  margin-top: 5px;
+  margin-left: -65px;
+}
+
+.App-body {
+  background-color: #282c34;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #0870f0;
+}
+
+.form {
+  border: 2px solid rgb(235, 235, 235);
+  margin: 15px;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.form a {
+  padding: 10px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(235, 235, 235);
+  padding: 5px 0;
+  margin: 10px;
+  border-radius: 10px;
+}
+
+.row a {
+  padding: 0 30px;
+}
+
+button.action {
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #0897f0;
+  color: white;
+  border: 0;
+  margin-right: 25px;
+  cursor: pointer;
+}
+
+.column {
+  flex-direction: column;
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-spinner {
+  width: 10px;
+  height: 10px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #383636;
+  border-radius: 70%;
+  animation: spinner 1.5s linear infinite;
+}
+
+.spinner-container {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+}
