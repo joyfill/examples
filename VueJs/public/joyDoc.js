@@ -1,5 +1,5 @@
 import api from './api.js';
-import Ids from './Ids.js';
+import Ids from './ids.js';
 
 //Declared Variables ..
 let doc = null;
