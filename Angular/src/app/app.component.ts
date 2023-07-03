@@ -1,7 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import api from '../api.js';
 import Ids from '../Ids.js';
-declare var JoyFill: any;
+declare var Joyfill: any;
 
 @Component({
   selector: 'app-root',
@@ -35,9 +35,9 @@ export class AppComponent implements OnInit {
         doc = doc
       },
     }
-    console.log(JoyFill);
+    console.log(Joyfill);
     
-    const joyFill = JoyFill(params);
+    const joyFill = Joyfill(params);
     (<HTMLInputElement>document.getElementById("target")).appendChild(joyFill);
     
   }
