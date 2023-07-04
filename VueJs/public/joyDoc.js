@@ -24,7 +24,7 @@ const retrieveJofillDocument = async () => {
       doc = doc
     },
   }
-  const joyFill = JoyFill(params)
+  const joyFill = Joyfill(params)
   document.getElementById('target').appendChild(joyFill);
 }
 
