@@ -10,12 +10,14 @@
 
     <link rel="stylesheet" type="text/css" href="./src/styles.css" />
 
-    <!-- Non ESM <script type="text/javascript" src="../../dist/joyfill.js"></script> -->
+    <script type="text/javascript" src="./src/joyfill.js"></script>
+    <script type="text/javascript" src="./src/index.js"></script>
   </head>
 
   <body>
     <div class="card">
        <h2>Joyfill Portal Example</h2>
+       <button onclick="loadJoyfill()">Load Joyfill</button>
        <p>
           Shows off how the Joyfill Javascript SDK embeddable portal would work.
           <a href="https://joyfill.readme.io/docs/js" target="_blank"> Read Docs.</a>
@@ -23,8 +25,7 @@
     </div>
 
     <div id="joyfill-portal"></div>
-    <script type="module" src="src/index.esm.js"></script>
+    <!-- <script type="module" src="src/index.esm.js"></script> -->
 
-    <!-- Non ESM <script src="src/index.js"></script> -->
   </body>
 </html>
