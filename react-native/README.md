@@ -79,10 +79,6 @@ function Document() {
               console.log('onChange doc: ', doc);
               setDoc(doc);
             }}
-            onUploadAsync={async ({documentId}, fileUploads) => {
-              // to see a full utilization of upload see api.js -> examples
-              console.log('onUploadAsync: ', fileUploads);
-            }}
           />
         </View>
       )}
