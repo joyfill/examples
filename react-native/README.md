@@ -25,10 +25,7 @@ $ cd ios && pod install
 ### Expo (managed)
 
 ```shell npm
-$ npm install @joyfill/components@latest
-```
-```Text Yarn
-$ yarn add @joyfill/components@latest
+$ npx expo install @joyfill/components-react-native@latest react-native-webview react-native-svg
 ```
 
 ## Implement your code
