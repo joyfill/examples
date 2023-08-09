@@ -7,6 +7,7 @@ import {
   View,
   TouchableOpacity,
 } from 'react-native';
+
 import {JoyDoc} from '@joyfill/components-react-native';
 import {joyfillSave, joyfillGenerate, joyfillRetrieve} from './api.js';
 
@@ -21,12 +22,17 @@ const FormModes = {
 };
 
 function Document() {
-  const [doc, setDoc] = useState(null);
-  const [mode, setMode] = useState(FormModes.readonly);
-  const [pdfLink, setPdfLink] = useState(null);
-  const [loading, setLoading] = useState(null);
 
-  // retrieve the document from our api (you can also pass an initial documentId into JoyDoc)
+  const [mode, setMode] = useState(FormModes.fill);
+  const altMode = mode === FormModes.readonly ? FormModes.fill : FormModes.readonly;
+
+  const [doc, setDoc] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+
+  /**
+   * Retrieve document from Joyfill api. Don't forget to add documentId and userAccessToken
+   */
   useEffect(() => {
     retrieveJofillDocument();
   }, []);
@@ -38,16 +44,23 @@ function Document() {
     setLoading(null);
   };
 
-  // save the form and generate a pdf as an example
-  const saveForm = async doc => {
+  /**
+   * Handle saving document changes to Joyfill api. 
+   */
+  const saveJoyfillDocument = async () => {
+
     setLoading('saving document & generating pdf...');
-    await joyfillSave(doc, userAccessToken);
-    const downloadableLink = await joyfillGenerate(
-      doc.identifier,
-      userAccessToken,
-    );
-    setPdfLink(downloadableLink);
+
+    const response = await joyfillSave(doc, userAccessToken);
+    console.log('>>>>>>>>>>>>>>>> repsonse: ', response);
+
+    setDoc(response);
     setLoading(null);
+
+    //Uncomment below to see pdf download
+    //const downloadableLink = await joyfillGenerate(doc.identifier, userAccessToken);
+    //console.log(downloadableLink);
+
   };
 
   return (
@@ -58,21 +71,17 @@ function Document() {
           <Text>Loading...</Text>
         </View>
       )}
-
       <View style={styles.row}>
         <Text style={styles.title}>{doc?.name || 'Joyfill Form'}</Text>
       </View>
       <View style={styles.row}>
         <TouchableOpacity
           style={styles.button}
-          onPress={() =>
-            setMode(
-              mode === FormModes.readonly ? FormModes.fill : FormModes.readonly,
-            )
-          }>
-          <Text style={styles.buttonText}>{`Set to ${mode}`}</Text>
+          onPress={() => setMode(altMode) }
+        >
+          <Text style={styles.buttonText}>{`Set to ${altMode}`}</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => saveForm(doc)} style={styles.button}>
+        <TouchableOpacity onPress={saveJoyfillDocument} style={styles.button}>
           <Text style={styles.buttonText}>Save</Text>
         </TouchableOpacity>
       </View>
@@ -84,17 +93,12 @@ function Document() {
             doc={doc}
             width={screenWidth}
             onChange={(params, changes, doc) => {
-              console.log('onChange doc: ', doc);
+              console.log('changes: ', params, changes, doc);
               setDoc(doc);
-            }}
-            onUploadAsync={async ({documentId}, fileUploads) => {
-              // to see a full utilization of upload see api.js -> examples
-              console.log('onUploadAsync: ', fileUploads);
             }}
           />
         </View>
       )}
-      <View style={styles.row}>{pdfLink && <Text>{pdfLink}</Text>}</View>
     </>
   );
 }
@@ -107,6 +111,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   form: {
+    flex: 1,
     backgroundColor: 'white',
     borderRadius: 6,
     borderWidth: 1,
