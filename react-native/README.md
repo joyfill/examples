@@ -111,3 +111,22 @@ const styles = StyleSheet.create({
 export default Document;
 
 ```
+
+### JoyDoc Properties
+
+* `mode: 'fill' | 'readonly'`
+  * **Required***
+  * Enables and disables certain JoyDoc functionality and features. 
+  * Options
+    * `fill` is the mode where you simply input the field data into the form
+    * `readonly` is the mode where everything in the form is set to read-only.
+* `doc: object`
+  * The default JoyDoc JSON starting object to load into the component view. Must be in the JoyDoc JSON data structure.
+* `onChange: (params: object, changes: object, doc: object) => {}` 
+  * Used to listen to any changes to the style, layout, values, etc. across all modes.
+  * `params: object`
+    * Contains information about what field has been changed.
+  * `changes: object`
+    * Can contain any of the JoyDoc JSON structure supported properties.
+  * `doc: object`
+    * Fully updated JoyDoc JSON structure with changes applied.
