@@ -7,11 +7,15 @@ import {
   View,
   TouchableOpacity,
 } from 'react-native';
+
+// 1. import the JoyDoc component
 import {JoyDoc} from '@joyfill/components-react-native';
+
 import {joyfillSave, joyfillGenerate, joyfillRetrieve} from './api.js';
 
 const screenWidth = Dimensions.get('window').width;
 
+// 2, replace here with steps from our Getting Started -> Setup guide
 const userAccessToken = '<REPLACE_ME>';
 const documentId = '<REPLACE_ME>';
 
@@ -22,7 +26,7 @@ const FormModes = {
 
 function Document() {
   const [doc, setDoc] = useState(null);
-  const [mode, setMode] = useState(FormModes.readonly);
+  const [mode, setMode] = useState(FormModes.fill);
   const [pdfLink, setPdfLink] = useState(null);
   const [loading, setLoading] = useState(null);
 
@@ -70,7 +74,9 @@ function Document() {
               mode === FormModes.readonly ? FormModes.fill : FormModes.readonly,
             )
           }>
-          <Text style={styles.buttonText}>{`Set to ${mode}`}</Text>
+          <Text style={styles.buttonText}>{`Set to ${
+            mode === FormModes.readonly ? FormModes.fill : FormModes.readonly
+          }`}</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => saveForm(doc)} style={styles.button}>
           <Text style={styles.buttonText}>Save</Text>
