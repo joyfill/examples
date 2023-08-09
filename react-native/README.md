@@ -1,79 +1,132 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+![joyfill_logo](https://github.com/joyfill/examples/assets/5873346/4943ecf8-a718-4c97-a917-0c89db014e49)
 
-# Getting Started
+# @joyfill/components-react-native
+We recommend visiting our official react-native setup guide https://docs.joyfill.io/docs/react-native.
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+## Project Requirements
+_userAccessTokens & identifiers will need to be stored on your end (usually on a user and set of existing form field-based data) in order to interact with our API and UI Components effectively_
 
-## Step 1: Start the Metro Server
+- React and React DOM v17+
+- React-Native v0.70.0+
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+## Install Dependency
 
-To start Metro, run the following command from the _root_ of your React Native project:
+### React-Native CLI (bare)
 
-```bash
-# using npm
-npm start
-
-# OR using Yarn
-yarn start
+```shell npm
+$ npm install @joyfill/components-react-native@latest react-native-webview react-native-svg --save
+$ cd ios && pod install
+```
+```Text Yarn
+$ yarn add @joyfill/components-react-native@latest react-native-webview react-native-svg
+$ cd ios && pod install
 ```
 
-## Step 2: Start your Application
+### Expo (managed)
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
-
-### For Android
-
-```bash
-# using npm
-npm run android
-
-# OR using Yarn
-yarn android
+```shell npm
+$ npm install @joyfill/components@latest
+```
+```Text Yarn
+$ yarn add @joyfill/components@latest
 ```
 
-### For iOS
+## Implement your code
+For full examples please see [https://docs.joyfill.io/docs/react-native](https://docs.joyfill.io/docs/react-native#implement-your-code).
 
-```bash
-# using npm
-npm run ios
+Below is a usable example of our react-native document native embedded. This will show a readonly or fillable depending on the `mode` form to your users. The document (form) shown is based on your `documentId`.
 
-# OR using Yarn
-yarn ios
+Make sure to replace the `userAccessToken` and `documentId`. Note that `documentId` is just for this example, you can call our [List all documents](ref:list-all-documents) endpoint and grab an ID from there.
+
+```
+import React, {useState, useEffect} from 'react';
+import {
+  Dimensions,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
+import {JoyDoc} from '@joyfill/components-react-native';
+import {joyfillRetrieve} from './api.js';
+
+const screenWidth = Dimensions.get('window').width;
+
+const userAccessToken = '<REPLACE_ME>';
+const documentId = '<REPLACE_ME>';
+
+const FormModes = {
+  fill: 'fill',
+  readonly: 'readonly',
+};
+
+function Document() {
+  const [doc, setDoc] = useState(null);
+
+  // retrieve the document from our api (you can also pass an initial documentId into JoyDoc)
+  useEffect(() => {
+    const response = await joyfillRetrieve(documentId, userAccessToken).then(doc => {
+      setDoc(response);
+    });
+  }, []);
+
+  return (
+    <>
+      <Text style={styles.title}>{doc?.name || 'Joyfill Form'}</Text>
+      {doc && (
+        <View style={styles.form}>
+          <JoyDoc
+            mode={FormModes.fill}
+            doc={doc}
+            width={screenWidth}
+            onChange={(params, changes, doc) => {
+              console.log('onChange doc: ', doc);
+              setDoc(doc);
+            }}
+            onUploadAsync={async ({documentId}, fileUploads) => {
+              // to see a full utilization of upload see api.js -> examples
+              console.log('onUploadAsync: ', fileUploads);
+            }}
+          />
+        </View>
+      )}
+    </>
+  );
+}
+
+const styles = StyleSheet.create({
+  form: {
+    backgroundColor: 'white',
+    borderRadius: 6,
+    borderWidth: 1,
+    borderColor: '#E6E6FA',
+    padding: 2,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: '600',
+    color: 'black',
+  },
+});
+
+export default Document;
+
 ```
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+### JoyDoc Properties
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
-
-## Step 3: Modifying your App
-
-Now that you have successfully run the app, let's modify it.
-
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
-
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+* `mode: 'fill' | 'readonly'`
+  * **Required***
+  * Enables and disables certain JoyDoc functionality and features. 
+  * Options
+    * `fill` is the mode where you simply input the field data into the form
+    * `readonly` is the mode where everything in the form is set to read-only.
+* `doc: object`
+  * The default JoyDoc JSON starting object to load into the component view. Must be in the JoyDoc JSON data structure.
+* `onChange: (params: object, changes: object, doc: object) => {}` 
+  * Used to listen to any changes to the style, layout, values, etc. across all modes.
+  * `params: object`
+    * Contains information about what field has been changed.
+  * `changes: object`
+    * Can contain any of the JoyDoc JSON structure supported properties.
+  * `doc: object`
+    * Fully updated JoyDoc JSON structure with changes applied.

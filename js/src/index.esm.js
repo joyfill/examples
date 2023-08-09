@@ -2,7 +2,7 @@ import { Portal } from "@joyfill/sdk-js/dist/joyfill.esm.full.js";
 
 // you will want to use our list users endpoint to get
 // users and their user access tokens
-const userAccessToken = 'test123eyJ0b2tlbiI6IjY0MjVlNWZhYzc2YmRiMjZjOTM2N2U2NCIsImV4cGlyZXNPbiI6MTY4ODE4Mzk5OTk5OX0';
+const userAccessToken = 'sandbox_access_token_1234abcdeffoobar';
 
 // call this anytime you want to insert the Joyfill Portal
 // you can pass any values to the JoyDoc from here just

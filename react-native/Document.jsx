@@ -7,9 +7,13 @@ import {
   View,
   TouchableOpacity,
 } from 'react-native';
-
-import {JoyDoc} from '@joyfill/components-react-native';
 import {joyfillSave, joyfillGenerate, joyfillRetrieve} from './api.js';
+
+/**
+ * Import JoyDoc
+ */
+import {JoyDoc} from '@joyfill/components-react-native';
+
 
 const screenWidth = Dimensions.get('window').width;
 
