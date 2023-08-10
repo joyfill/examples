@@ -1,5 +1,5 @@
 import React from 'react';
-import {SafeAreaView, ScrollView, StatusBar, StyleSheet} from 'react-native';
+import {SafeAreaView, View, StatusBar, StyleSheet} from 'react-native';
 
 import Document from './Document';
 
@@ -7,11 +7,9 @@ function App() {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={styles.scrollview}>
+      <View style={styles.viewer}>
         <Document />
-      </ScrollView>
+      </View>
     </SafeAreaView>
   );
 }
@@ -20,7 +18,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  scrollview: {
+  viewer: {
+    flex: 1,
     padding: 10,
   },
 });

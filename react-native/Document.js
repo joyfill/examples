@@ -16,9 +16,8 @@ import {joyfillSave, joyfillGenerate, joyfillRetrieve} from './api.js';
 const screenWidth = Dimensions.get('window').width;
 
 // 2, replace here with steps from our Getting Started -> Setup guide
-const userAccessToken =
-  'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbiI6IjY0MjIyMjU0NjE2NzcyZmFmYzdhNzc2MiJ9.vjw0KYOQ6hlo98ar7BDz-6ADYZndV4hwFRF4XAQtz58';
-const documentId = 'doc_642221ca8553d877267f1b20';
+const userAccessToken = '';
+const documentId = '';
 
 const FormModes = {
   fill: 'fill',
@@ -85,21 +84,19 @@ function Document() {
       </View>
 
       {doc && (
-        <View style={styles.form}>
-          <JoyDoc
-            mode={mode}
-            doc={doc}
-            width={screenWidth}
-            onChange={(params, changes, doc) => {
-              console.log('onChange doc: ', doc);
-              setDoc(doc);
-            }}
-            onUploadAsync={async ({documentId}, fileUploads) => {
-              // to see a full utilization of upload see api.js -> examples
-              console.log('onUploadAsync: ', fileUploads);
-            }}
-          />
-        </View>
+        <JoyDoc
+          mode={mode}
+          doc={doc}
+          width={screenWidth}
+          onChange={(params, changes, doc) => {
+            console.log('onChange doc: ', doc);
+            setDoc(doc);
+          }}
+          onUploadAsync={async ({documentId}, fileUploads) => {
+            // to see a full utilization of upload see api.js -> examples
+            console.log('onUploadAsync: ', fileUploads);
+          }}
+        />
       )}
       <View style={styles.row}>{pdfLink && <Text>{pdfLink}</Text>}</View>
     </>
