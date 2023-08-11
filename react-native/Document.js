@@ -96,6 +96,10 @@ function Document() {
             // to see a full utilization of upload see api.js -> examples
             console.log('onUploadAsync: ', fileUploads);
           }}
+
+          // Used for page navigation controls
+          // initialPageId="<pageId>" // found in: doc.files[0].pages[0].id
+          // navigation={{pages: false}}
         />
       )}
       <View style={styles.row}>{pdfLink && <Text>{pdfLink}</Text>}</View>

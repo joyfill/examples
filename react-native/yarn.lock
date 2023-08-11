@@ -1462,10 +1462,10 @@
     "@types/yargs" "^16.0.0"
     "chalk" "^4.0.0"
 
-"@joyfill/components-react-native@^0.1.33":
-  "integrity" "sha512-59ujVEcKEDZTC270/ro1nnv+RQmfcxrdpfZmIsyyfCTLdBTzCpDVq9uPe/AEESffCd0P/6foteylMZbR1zx85A=="
-  "resolved" "https://registry.npmjs.org/@joyfill/components-react-native/-/components-react-native-0.1.33.tgz"
-  "version" "0.1.33"
+"@joyfill/components-react-native@^0.2.0":
+  "integrity" "sha512-EjBq3gL9uVnGukyM9p0j81BU3sA30NoK2Trqf05AuGewOFVzbodM5BHVpEzpez0ELt09H4u69NN8KsAK8At9vg=="
+  "resolved" "https://registry.npmjs.org/@joyfill/components-react-native/-/components-react-native-0.2.0.tgz"
+  "version" "0.2.0"
   dependencies:
     "@builttocreate/engine-utils" "^2.0.1"
     "@fortawesome/fontawesome-svg-core" "^6.2.1"
