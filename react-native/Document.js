@@ -88,7 +88,8 @@ function Document() {
           mode={mode}
           doc={doc}
           width={screenWidth}
-          onChange={(params, changes, doc) => {
+          onChange={(changelogs, doc) => {
+            console.log('onChange changelogs: ', changelogs);
             console.log('onChange doc: ', doc);
             setDoc(doc);
           }}
