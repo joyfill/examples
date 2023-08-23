@@ -1,125 +1,17 @@
 ![joyfill_logo](https://github.com/joyfill/examples/assets/5873346/4943ecf8-a718-4c97-a917-0c89db014e49)
 
-# @joyfill/components-react-native
-We recommend visiting our official react-native setup guide https://docs.joyfill.io/docs/react-native.
+# Joyfill React Native and Expo SDK Example
 
-## Project Requirements
-_userAccessTokens & identifiers will need to be stored on your end (usually on a user and set of existing form field-based data) in order to interact with our API and UI Components effectively_
+We recommend visiting our official [Setup Guide](https://docs.joyfill.io/docs/quick-start) and [React Native Guide](https://docs.joyfill.io/docs/react-native)
 
-- React and React DOM v17+
-- React-Native v0.70.0+
+# Setup
 
-## Install Dependency
+* **Step 1:** Copy the `api.js` in the root folder and all files from either the avanced or simple example folder into your project.
+* **Step 2:** Replace the the `<ACCESS_TOKEN>` at the top of the `api.js` file with your acccess token that you created in the Joyfill Setup Guide.
+* **Step 3:** Install Joyfill [React Native SDK](https://www.npmjs.com/package/@joyfill/components-react-native) in your project.
 
-### React-Native CLI (bare)
+# Examples
 
-```shell npm
-$ npm install @joyfill/components-react-native@latest react-native-webview react-native-svg --save
-$ cd ios && pod install
-```
-```Text Yarn
-$ yarn add @joyfill/components-react-native@latest react-native-webview react-native-svg
-$ cd ios && pod install
-```
+* **Simple** - This example will show you how retrieve a document/template from the Joyfill API, render it into the SDK, and save any changes.
+* **Advanced** - This example will show you how retrieve templates, generate documents from a template, use the SDK, save user input changes, generate PDF downloads, and more.
 
-### Expo (managed)
-
-```shell npm
-$ npx expo install @joyfill/components-react-native@latest react-native-webview react-native-svg
-```
-
-## Implement your code
-For full examples please see [https://docs.joyfill.io/docs/react-native](https://docs.joyfill.io/docs/react-native#implement-your-code).
-
-Below is a usable example of our react-native document native embedded. This will show a readonly or fillable depending on the `mode` form to your users. The document (form) shown is based on your `documentId`.
-
-Make sure to replace the `userAccessToken` and `documentId`. Note that `documentId` is just for this example, you can call our [List all documents](ref:list-all-documents) endpoint and grab an ID from there.
-
-```
-import React, {useState, useEffect} from 'react';
-import {
-  Dimensions,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
-import {JoyDoc} from '@joyfill/components-react-native';
-import {joyfillRetrieve} from './api.js';
-
-const screenWidth = Dimensions.get('window').width;
-
-const userAccessToken = '<REPLACE_ME>';
-const documentId = '<REPLACE_ME>';
-
-const FormModes = {
-  fill: 'fill',
-  readonly: 'readonly',
-};
-
-function Document() {
-  const [doc, setDoc] = useState(null);
-
-  // retrieve the document from our api (you can also pass an initial documentId into JoyDoc)
-  useEffect(() => {
-    const response = await joyfillRetrieve(documentId, userAccessToken).then(doc => {
-      setDoc(response);
-    });
-  }, []);
-
-  return (
-    <>
-      <Text style={styles.title}>{doc?.name || 'Joyfill Form'}</Text>
-      {doc && (
-        <View style={styles.form}>
-          <JoyDoc
-            mode={FormModes.fill}
-            doc={doc}
-            width={screenWidth}
-            onChange={(params, changes, doc) => {
-              console.log('onChange doc: ', doc);
-              setDoc(doc);
-            }}
-          />
-        </View>
-      )}
-    </>
-  );
-}
-
-const styles = StyleSheet.create({
-  form: {
-    backgroundColor: 'white',
-    borderRadius: 6,
-    borderWidth: 1,
-    borderColor: '#E6E6FA',
-    padding: 2,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: 'black',
-  },
-});
-
-export default Document;
-
-```
-
-### JoyDoc Properties
-
-* `mode: 'fill' | 'readonly'`
-  * **Required***
-  * Enables and disables certain JoyDoc functionality and features. 
-  * Options
-    * `fill` is the mode where you simply input the field data into the form
-    * `readonly` is the mode where everything in the form is set to read-only.
-* `doc: object`
-  * The default JoyDoc JSON starting object to load into the component view. Must be in the JoyDoc JSON data structure.
-* `onChange: (params: object, changes: object, doc: object) => {}` 
-  * Used to listen to any changes to the style, layout, values, etc. across all modes.
-  * `params: object`
-    * Contains information about what field has been changed.
-  * `changes: object`
-    * Can contain any of the JoyDoc JSON structure supported properties.
-  * `doc: object`
-    * Fully updated JoyDoc JSON structure with changes applied.
