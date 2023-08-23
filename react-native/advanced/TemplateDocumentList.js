@@ -9,7 +9,7 @@ const TemplateDocumentList = ({ template, onViewDocument }) => {
   const [docs, setDocs] = useState([]);
 
   /**
-   * Step 1: Retrieve list of templates
+   * Step 1: Retrieve list of template documents
    */
   useEffect(() => {
 
