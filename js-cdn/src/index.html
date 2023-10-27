@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Joyfill for Javascript Example</title>
+    <base href=".">
+    <meta charset="UTF-8" />
+    <script src=" https://cdn.jsdelivr.net/npm/@joyfill/components@latest/dist/joyfill.min.js"></script>
+  </head>
+  <body>
+    <div id="joyfill"></div>
+    <script>
+
+      Joyfill.JoyDoc(
+        document.getElementById('joyfill'),
+        {
+          mode: 'edit',
+          onChange: (changelogs, doc) => console.log('onChange: ', changelogs, doc),
+        }
+      );
+
+    </script>
+  </body>
+</html>
