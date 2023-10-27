@@ -1,5 +1,5 @@
 {
-  "name": "joyfill-vanilla-js-basic-example",
+  "name": "joyfill-vanilla-js-module-example",
   "private": true,
   "version": "1.0.0",
   "source": "./src/index.html",
@@ -10,7 +10,7 @@
     "build": "parcel build"
   },
   "dependencies": {
-    "@joyfill/components": "3.4.3-beta.0"
+    "@joyfill/components": "latest"
   },
   "devDependencies": {
     "parcel": "^2.8.2"
