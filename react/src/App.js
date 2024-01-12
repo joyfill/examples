@@ -13,7 +13,7 @@ import {
 
 import './App.css';
 
-import JoyDocPage from './demos/joydoc/index.js';
+import SimplePage from './demos/simple/index.js';
 import TemplatesRootPage from './demos/templates/index.js';
 import TemplatesPage from './demos/templates/pages/TemplatesPage.js';
 import TemplateDocumentsPage from './demos/templates/pages/TemplateDocumentsPage.js';
@@ -26,7 +26,7 @@ const Router = createBrowserRouter(
       element={<Outlet />}
     >
       <Route path="/" element={<IntroPage />} />
-      <Route path="/joydoc_demo" element={<JoyDocPage />} />
+      <Route path="/simple_demo" element={<SimplePage />} />
       <Route path="/templates_demo" element={<TemplatesRootPage />}>
         <Route path="/templates_demo" element={<TemplatesPage />}/>
         <Route path="/templates_demo/:templateIdentifier/documents" element={<TemplateDocumentsPage />}/>
@@ -62,7 +62,7 @@ function IntroPage() {
         <column>
         </column>
       </div>
-      <Link to="/joydoc_demo"><h1>Embedded Component Demo</h1></Link>
+      <Link to="/simple_demo"><h1>Simple Demo</h1></Link>
       <Link to="/templates_demo"><h1>Templates Workflow Demo</h1></Link>
     </div>
   );

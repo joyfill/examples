@@ -1,13 +1,20 @@
-# Overview
+# Requirements
 
-* **Embedded UI Component Demo** - See `src/demos/joydoc`. This will show you how to simply use the Joyfill Embeddable UI Component to edit/create forms and fill the form with data.
-* **Templates Workflow Demo** - See `src/demos/templates`. This will show you how to use Joyfill API to create a template based workflow with your documents.
+* Node v18+
 
 # Getting Started 
 
-* **Step 1:** Read and Complete the [Joyfill Getting Started Docs](https://dash.readme.com/project/joyfill/v1.1/docs/quick-start)
-* **Step 2:** Replace `userAccessToken` at the top of file `src/api.js` to enable the live API.
-* **Step 3:** Run `yarn start` in your terminal to run the project
+* **Step 1:** Read and Complete the [Joyfill React Guide](https://docs.joyfill.io/docs/react-sdk)
+* **Step 2:** Replace `userAccessToken` at the top of file `src/api.js` with a valid Joyfill Access Token to enable the live API. [Learn how to generate a User Access Token here](https://docs.joyfill.io/docs/authentication#user-access-tokens)
+* **Step 3:** Run `yarn` to install all dependencies
+* **Step 4:** Run `yarn start` in your terminal to run the project
+
+# Demo's Overview
+
+* **Simple Demo** - See `src/demos/simple`. This demo will show you how to use the Joyfill React SDK to render a template, update a template, and generate a template PDF download. 
+* **Templates Workflow Demo** - See `src/demos/templates`. This demo will show you to build a template based workflow using Joyfill SDK. A template based workflow represents a template form that will get filled out repeatedly generating many documents from a single template structure.
+
+## Project 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

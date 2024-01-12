@@ -12,6 +12,7 @@ function FillTemplateDocumentPage() {
 
   const [ doc, setDoc ] = useState(null);
   const [loading, setLoading] = useState(null);
+  const [pdfLink, setPdfLink] = useState(null);
 
   useEffect(() => {
     retrieveTemplateDocument();
@@ -56,6 +57,7 @@ function FillTemplateDocumentPage() {
           </button>
         </column>
       </div>
+      {pdfLink && <a href={pdfLink} download>Download PDF</a>}
       <Loading text={loading} />
       <div className='form'>
         <JoyDoc

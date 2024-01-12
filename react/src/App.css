@@ -22,6 +22,18 @@
   color: #0870f0;
 }
 
+.header {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(235, 235, 235);
+  margin: 10px;
+  padding: 8px;
+  border-radius: 10px;
+}
+
 .form {
   border: 2px solid rgb(235, 235, 235);
   margin: 15px;
@@ -50,6 +62,7 @@
 }
 
 button.action {
+  font-weight: 600;
   padding: 10px;
   border-radius: 8px;
   background-color: #0897f0;
