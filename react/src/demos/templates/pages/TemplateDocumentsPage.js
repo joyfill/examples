@@ -3,6 +3,11 @@ import { Card, Space, Table, Button } from 'antd';
 import { listDocumentsForTemplate } from '../../../api';
 import { useNavigate, useParams } from "react-router-dom";
 
+/**
+ * Overview
+ *
+ * - This page retrieves and displays all documents associated with a template.
+ */
 const TemplateDocumentsPage = () => {
 
   /**
@@ -11,70 +16,37 @@ const TemplateDocumentsPage = () => {
   const { templateIdentifier } = useParams(); 
   const navigate = useNavigate(); 
 
-  const [docs, setDocs] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [ docs, setDocs ] = useState([]);
+  const [ loading, setLoading ] = useState(true);
 
   /**
    * Step 2: Retrieve list of documents associated with the template from api
    */
   useEffect(() => {
 
-    const populateTemplateDocuments = async () => {
-      //See src/api.js file for request example
+    const handleListTemplateDocuments = async () => {
       const response = await listDocumentsForTemplate(templateIdentifier); 
       setDocs(response.data);
       setLoading(false);
     }
 
-    populateTemplateDocuments();  
+    handleListTemplateDocuments();  
 
   }, [templateIdentifier]);
 
   const columns = [];
   const rows = [];
 
-  /**
-   * Step 3: Review list of filled template data
-   */
   docs.forEach((doc, i) => {
 
-    /**
-     * Step 3.1: Create list of field columns. All documents associated with
-     * the same template will have the same fields (columns) so we
-     * only need to generate the columns based on the first document.
-     */
-    if (i === 0 && columns.length < 1) {
-      doc.fields.forEach((field) => {
-        columns.push({
-          title: field.title,
-          dataIndex: field._id,
-          key: field._id,
-          render: (text) => text
-        })
-      })
-    }
-
-    /**
-     * Step 3.2: Create list of rows to display the filled out template data.
-     */
-    const row = {
+    rows.push({
       key: doc._id,
       id: doc._id,
+      name: doc.name,
       identifier: doc.identifier,
       source: doc.source, //Source links to templateIdentifier
-    };
-
-    doc.fields.forEach((field) => {
-
-      /**
-       * Step 3.3: We recommned that you check the field.type to properly
-       * format the value for display based on its type.
-       */
-      row[field._id] = field.value || (<i>Empty</i>); 
-
-    })
-
-    rows.push(row);
+      createdOn: new Date(doc.createdOn).toString()
+    });
 
   })
 
@@ -82,40 +54,65 @@ const TemplateDocumentsPage = () => {
     <div style={{padding: '12px'}}>
       <h1>Template Documents</h1>
       <Card>
-        <Table 
-          size="middle"
-          loading={loading}
-          columns={[
-            ...columns,
-            {
-              title: '',
-              dataIndex: 'actions',
-              key: 'id',
-              render: (id, record, index) => {
+        {rows.length < 1 ? null : (
+          <Table 
+            size="middle"
+            loading={loading}
+            dataSource={rows} 
+            columns={[
+              {
+                title: 'Name',
+                dataIndex: 'name',
+                key: 'name',
+                render: (text, record, index) => {
+                  return text;
+                }
+              },
+              {
+                title: 'Identifier',
+                dataIndex: 'identifier',
+                key: 'identifier',
+                render: (text, record, index) => {
+                  return text;
+                }
+              },
+              {
+                title: 'Created',
+                dataIndex: 'createdOn',
+                key: 'createdOn',
+                render: (text, record, index) => {
+                  return text;
+                }
+              },
+              {
+                title: '',
+                dataIndex: 'actions',
+                key: 'id',
+                render: (id, record, index) => {
 
-                const templateIdentifier = record.source;
-                const docIdentifier = record.identifier;
+                  const templateIdentifier = record.source;
+                  const docIdentifier = record.identifier;
 
-                return (
-                  <div>
-                    <Space>
-                      <Button 
-                        shape="round" 
-                        onClick={() => {
-                          navigate(`/templates_demo/${templateIdentifier}/documents/${docIdentifier}`)
-                        }}
-                      >
-                        View
-                      </Button>
-                    </Space>
-                  </div>
-                );
+                  return (
+                    <div>
+                      <Space>
+                        <Button 
+                          shape="round" 
+                          onClick={() => {
+                            navigate(`/templates_demo/${templateIdentifier}/documents/${docIdentifier}`)
+                          }}
+                        >
+                          View
+                        </Button>
+                      </Space>
+                    </div>
+                  );
+                }
               }
-            }
-          ]} 
-          dataSource={rows} 
-          pagination={false}
-        />
+            ]}
+            pagination={false}
+          />
+        )}
       </Card>
     </div>
   ); 

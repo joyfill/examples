@@ -1,6 +1,6 @@
 
-const userAccessToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbiI6IjY0YmVjYWY3NDU5NDQzYjU3MmQ4Y2M2OCJ9.TlGmYVqCkwBkXDxzssZwCos-tlR7Hi43wPPJ3XqxIgA'//"<REPLACE_USER_ACCESS_TOKEN>";
-const apiBaseUrl = "https://api-joy.joyfill.io";
+const userAccessToken = '<REPLACE_USER_ACCESS_TOKEN>';
+const apiBaseUrl = 'https://api-joy.joyfill.io';
 
 export const createTemplate = async (doc) => {
 
@@ -68,24 +68,6 @@ export const listTemplates = async () => {
 
 };
 
-export const exportDocument = async (identifier, userAccessToken) => {
-
-  const response = await fetch(`${apiBaseUrl}/v1/documents/exports/pdf`, {
-    method: 'POST',
-    mode:'cors',
-    headers: {
-      Authorization: `Bearer ${userAccessToken}`,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ document: identifier })
-  });
-  
-
-  const data = await response.json();
-  return data.download_url;
-
-}
-
 export const listDocumentsForTemplate = async (templateIdentifier) => {
 
   const response = await fetch(`${apiBaseUrl}/v1/documents?page=1&limit=25&stage=all&template=${templateIdentifier}`, {
@@ -97,14 +79,30 @@ export const listDocumentsForTemplate = async (templateIdentifier) => {
     },
   });
 
-  const data = await response.json();
+  return await response.json();
 
-  return data;
 }
 
-export const retrieveDocument = async (documentIdentifier) => {
+export const createDocumentPDF = async (identifier) => {
 
-  const response = await fetch(`${apiBaseUrl}/v1/documents/${documentIdentifier}`, {
+  const response = await fetch(`${apiBaseUrl}/v1/documents/${identifier}/exports/pdf`, {
+    method: 'POST',
+    mode:'cors',
+    headers: {
+      Authorization: `Bearer ${userAccessToken}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({})
+  });
+  
+
+  return await response.json();
+
+}
+
+export const retrieveDocument = async (identifier) => {
+
+  const response = await fetch(`${apiBaseUrl}/v1/documents/${identifier}`, {
     method: 'GET',
     mode: 'cors',
     headers: {
@@ -113,29 +111,22 @@ export const retrieveDocument = async (documentIdentifier) => {
     },
   });
 
-  const data = await response.json();
-  return data;
+  return await response.json();
 }
 
-export const saveDocument = async (doc) => {
+export const updateDocument = async (identifier, doc) => {
 
-  const response = await fetch(`${apiBaseUrl}/v1/documents/${doc.identifier}`, {
+  const response = await fetch(`${apiBaseUrl}/v1/documents/${identifier}`, {
     method: 'POST',
     mode:'cors',
     headers: {
       Authorization: `Bearer ${userAccessToken}`,
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({
-      type: "document",
-      stage: "published",
-      name: "ACME_WorkOrder",
-      files: [doc.files[0]]
-    })
+    body: JSON.stringify(doc)
   });
 
-  const data = await response.json();
-  return data;
+  return await response.json();
 
 };
 
@@ -214,29 +205,3 @@ export const convertPDFPagesToBase64Async = async (dataUri, userAccessToken) => 
 
 };
 
-// NON
-
-/**
- * Examples
- *
- * 
- 
- onUploadAsync={() => {
-  const fileUpload = Array.isArray(fileUploads) ? fileUploads[0] : fileUploads;
-  if (fileUpload.type === 'application/pdf') {
-
-    const dataUri = await getDataUriForFileUpload(fileUpload);
-    const base64DataUris = await convertPDFPagesToBase64Async(dataUri, userAccessToken);
-    const fileUploadPromises = base64DataUris.map((uri) => uploadFileAsync(documentId, uri, userAccessToken));
-
-    return Promise.all(fileUploadPromises);
-
-  } else {
-
-    const dataUri = await getDataUriForFileUpload(fileUpload, userAccessToken);
-    return uploadFileAsync(documentId, dataUri, userAccessToken);
-
-  } 
- }}
-
-*/

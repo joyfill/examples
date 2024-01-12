@@ -1,3 +1,8 @@
+# Demo's Overview
+
+* **Simple Demo** - See `src/demos/simple`. This demo will show you how to use the Joyfill React SDK to render template and update a template. 
+* **Templates Workflow Demo** - See `src/demos/templates`. This demo will show you to build a template based workflow using Joyfill SDK. A template based workflow represents a template that will be filled out repeatedly. This "fill out" action generates a document from the original template. 
+
 # Requirements
 
 * Node v18+
@@ -8,11 +13,6 @@
 * **Step 2:** Replace `userAccessToken` at the top of file `src/api.js` with a valid Joyfill Access Token to enable the live API. [Learn how to generate a User Access Token here](https://docs.joyfill.io/docs/authentication#user-access-tokens)
 * **Step 3:** Run `yarn` to install all dependencies
 * **Step 4:** Run `yarn start` in your terminal to run the project
-
-# Demo's Overview
-
-* **Simple Demo** - See `src/demos/simple`. This demo will show you how to use the Joyfill React SDK to render a template, update a template, and generate a template PDF download. 
-* **Templates Workflow Demo** - See `src/demos/templates`. This demo will show you to build a template based workflow using Joyfill SDK. A template based workflow represents a template form that will get filled out repeatedly generating many documents from a single template structure.
 
 ## Project 
 

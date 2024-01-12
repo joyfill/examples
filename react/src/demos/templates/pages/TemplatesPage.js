@@ -2,7 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { Space, Table, Card, Button } from 'antd';
 import { listTemplates, createDocument } from '../../../api';
 import { useNavigate } from "react-router-dom";
+import { getDocumentFromTemplate } from '@joyfill/components';
 
+/**
+ * Overview
+ *
+ * - This page retrieves and display a list of your Joyfill Templates. 
+ * - Once all templates are displayed you can view associated documents and 
+ *   or generate a new document. See the difference between templates and 
+ *   documents here: https://docs.joyfill.io/docs/key-terminology#template-vs-document
+ *
+ */
 const TemplatesPage = () => {
 
   const navigate = useNavigate();
@@ -11,18 +21,17 @@ const TemplatesPage = () => {
   const [loading, setLoading] = useState(true);
 
   /**
-   * Retrieve list of templates when page loads.
+   * Retrieve list of your templates when page loads.
    */
   useEffect(() => {
 
-    const populateTemplates = async () => {
-      //See src/api.js file for request example
+    const handleListTemplates = async () => {
       const response = await listTemplates(); 
       setTemplates(response.data);
       setLoading(false);
     }
 
-    populateTemplates();  
+    handleListTemplates();  
 
   }, [])
 
@@ -34,25 +43,24 @@ const TemplatesPage = () => {
     const template = templates.find((template) => template.identifier === templateIdentifier); 
 
     /**
-     * Create document from template. A document represents a filled out template.
+     * Step 1: Generate a document payload from the template using 
+     * the Joyfill helper method getDocumentFromTemplate.
      */
-    const newDocPayload = {
-      /**
-       * VERY IMPORTANT to add template property. 
-       *
-       * * This links the document to the template
-       * * This will add a source proeprty to the document that links back to the template identifier.
-       */
-      template: template.identifier, 
-      name: template.name,
-      files: template.files
-    };
-
+    const newDocPayload = getDocumentFromTemplate(template);
     const doc = await createDocument(newDocPayload); 
 
-    const sourceTemplateIdentifier = doc.source; //Document source links back to the original template identifier
+    /**
+     * Step 2: Get navigation parameters from the newly created document.
+     *
+     * - document.source links to the original associated template identifier
+     * - document.identifier the identifier of the new document 
+     */
+    const sourceTemplateIdentifier = doc.source; //
     const docIdentifier = doc.identifier; 
 
+    /**
+     * Step 3: Navigate to the newly created document
+     */
     navigate(`/templates_demo/${sourceTemplateIdentifier}/documents/${docIdentifier}`)
 
   }

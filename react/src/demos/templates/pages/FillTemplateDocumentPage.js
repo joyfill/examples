@@ -4,67 +4,73 @@ import { useParams } from "react-router-dom";
 
 import Loading from "../../../Loading";
 
-import { saveDocument, retrieveDocument } from '../../../api.js';
+import { 
+  updateDocument, 
+  retrieveDocument,
+  createDocumentPDF
+} from '../../../api.js';
 
 function FillTemplateDocumentPage() {
 
   const { templateIdentifier, documentIdentifier } = useParams();
 
   const [ doc, setDoc ] = useState(null);
-  const [loading, setLoading] = useState(null);
-  const [pdfLink, setPdfLink] = useState(null);
+  const [ mode, setMode ] = useState('edit');
+  const [ pdfLink, setPDFLink ] = useState(null);
 
   useEffect(() => {
-    retrieveTemplateDocument();
+    const handleRetrieveDocument = async () => {
+      const response = await retrieveDocument(documentIdentifier);
+      setDoc(response);
+    }
+    handleRetrieveDocument();
   }, []);
 
-  const retrieveTemplateDocument = async () => {
-
-    setLoading('Loading...');
-
-    const response = await retrieveDocument(documentIdentifier);
+  const handleUpdateDocument = async () => {
+    const response = await updateDocument(documentIdentifier, doc);
     setDoc(response);
-
-    setLoading(null);
   }
 
-  const handleSaveDocument = async (doc) => {
-    setLoading('Saving changes...');
-    const response = await saveDocument(doc);
-    setLoading(null);
+  const handleCreatePDF = async () => {
+    const response = await createDocumentPDF(documentIdentifier);
+    setPDFLink(response.preview_url);
   }
 
   return (
     <div className="App">
-      <div className="row">
-        <column>
-          <a
-            className="App-link"
-            href="https://docs.joyfill.io/"
-            target="_blank"
-          >
-            Checkout Joyfill Docs for More
-          </a>
-        </column>
-
-        <column>
-          <img src={'https://joyfill.io/wp-content/uploads/2022/03/Joyfill-logo-website-mobile.svg'} className="App-logo" alt="logo" />
-        </column>
-
-        <column>
-          <button className="action" onClick={() => handleSaveDocument(doc)}>
-            Save Changes
-          </button>
-        </column>
+      <div className="header">
+        <button className="action" onClick={handleCreatePDF}>
+          Generate PDF 
+        </button>
+        {!pdfLink ? null : ( 
+          <a href={pdfLink} target="_blank" className="action">Preview PDF</a>
+        )}
+        <button className="action" onClick={handleUpdateDocument}>
+          Save Changes
+        </button>
       </div>
-      {pdfLink && <a href={pdfLink} download>Download PDF</a>}
-      <Loading text={loading} />
+
       <div className='form'>
         <JoyDoc
           mode="fill"
           doc={doc}
-          onChange={(params, changes, doc) => {
-            setDoc(doc);
+          onChange={(changelogs, data) => {
+
+            /**
+             * Changelogs represent the individual change that was made
+             * Data represents the entire data structure with all new changes applied.
+             */
+            console.log('>>>>>>>: ', changelogs, data);
+            setDoc(data);
+
+          }}
+          onUploadAsync={async (params, fileUploads) => {
+
+            /**
+             * See how to handle file uploads here: 
+             * https://docs.joyfill.io/docs/react-image-and-pdf-uploads
+             */
+            console.log('>>>>>>>>>>>: ', fileUploads);
           }}
         />
       </div>
