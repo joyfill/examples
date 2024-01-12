@@ -198,10 +198,10 @@
     "@babel/helper-validator-identifier" "^7.19.1"
     to-fast-properties "^2.0.0"
 
-"@builttocreate/engine-utils@2.3.2":
-  version "2.3.2"
-  resolved "https://registry.yarnpkg.com/@builttocreate/engine-utils/-/engine-utils-2.3.2.tgz#3ba966473799aee5fa2a39cbf1c768f3f10b5332"
-  integrity sha512-9NdqgtDjZotQX8orQTogOG4+pXtyZqWde8YbTeW7ZVD3BYrQCeiebVri9SKLh3Y0lT0TV/Cs+D2DqhjugMQeAw==
+"@builttocreate/engine-utils@2.5.0":
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/@builttocreate/engine-utils/-/engine-utils-2.5.0.tgz#bcaafeb034cbe24fa7deedec376bf98be6867216"
+  integrity sha512-UgaHEuAMalO38py6sOLqR+8yAb1MpXDeyVuJkEqDeO7CPA+KQNLwRw0Q2/uM5WBMI2nUO5oeOZ46YBt1KAmPKQ==
   dependencies:
     "@babel/polyfill" "^7.12.1"
     "@builttocreate/hot-formula-parser" "^5.0.1"
@@ -397,23 +397,25 @@
   resolved "https://registry.yarnpkg.com/@icons/material/-/material-0.2.4.tgz#e90c9f71768b3736e76d7dd6783fc6c2afa88bc8"
   integrity sha512-QPcGmICAPbGLGb6F/yNf/KzKqvFx8z5qx3D1yFqVAjoFmXK35EgyW+cJ57Te3CNsmzblwtzakLGFqHPqrfb4Tw==
 
-"@joyfill/components@3.4.3-beta.0":
-  version "3.4.3-beta.0"
-  resolved "https://registry.yarnpkg.com/@joyfill/components/-/components-3.4.3-beta.0.tgz#ff9ad5234940d00744789f7901d35eb8367d4f5d"
-  integrity sha512-Q+Ya35YuRABYwivwMacwJ9S4N+j6cdBkMh++j1qhyATADyWR0fXfJlRtwGdm8OhGKGw4cV4u83b6XEC+5NLWDA==
+"@joyfill/components@latest":
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/@joyfill/components/-/components-3.5.0.tgz#82bda1730b9c66eaede86632e9e05e03f65601b8"
+  integrity sha512-QxtExe19yKpzm7SfrUJwc9jY65WxIqNa9vNNq0riLv0p+G/NysAd82TmCyW7eo13k8xT8TYh94BFdBneBfKn3Q==
   dependencies:
-    "@builttocreate/engine-utils" "2.3.2"
+    "@builttocreate/engine-utils" "2.5.0"
     "@builttocreate/hot-formula-parser" "5.0.2"
     "@fortawesome/fontawesome-svg-core" "^6.1.1"
     "@fortawesome/free-regular-svg-icons" "^6.1.1"
     "@fortawesome/free-solid-svg-icons" "^6.1.1"
     "@fortawesome/react-fontawesome" "^0.1.18"
+    "@joyfill/conditional-logic" "^0.1.1"
     "@rollup/plugin-replace" "^5.0.2"
     "@tanstack/react-virtual" "^3.0.0-beta.30"
     antd "^5.8.3"
     axios "^0.27.2"
     chroma-js "^2.1.1"
     draft-js "^0.11.7"
+    fast-equals "^5.0.1"
     lodash "^4.17.21"
     moment "^2.29.3"
     prop-types "^15.7.2"
@@ -434,6 +436,13 @@
     reselect "^4.1.5"
     styled-components "^5"
     victory "36.3.1"
+
+"@joyfill/conditional-logic@^0.1.1":
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/@joyfill/conditional-logic/-/conditional-logic-0.1.3.tgz#c5be438cecb6b94e273d67d67f4eee741d756b8b"
+  integrity sha512-9vmElR79WWC/aZYuA7O2yzui92+NQGsXtk5El9pxK4ZQc8obM508YNRxGo4Ml+0251gYO2yJqRuel75+GDYZdQ==
+  dependencies:
+    "@babel/polyfill" "^7.12.1"
 
 "@jridgewell/gen-mapping@^0.3.0", "@jridgewell/gen-mapping@^0.3.2":
   version "0.3.2"
@@ -1975,6 +1984,11 @@ fast-deep-equal@^3.1.3:
   resolved "https://registry.yarnpkg.com/fast-deep-equal/-/fast-deep-equal-3.1.3.tgz#3a7d56b559d6cbc3eb512325244e619a65c6c525"
   integrity sha512-f3qQ9oQy9j2AhBe/H9VC91wLmKBCCU/gDOnKNAYG5hswO7BLKj09Hc5HYNz9cGI++xlpDCIgDaitVs03ATR84Q==
 
+fast-equals@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/fast-equals/-/fast-equals-5.0.1.tgz#a4eefe3c5d1c0d021aeed0bc10ba5e0c12ee405d"
+  integrity sha512-WF1Wi8PwwSY7/6Kx0vKXtw8RwuSGoM1bvDaJbu7MxDlR1vovZjIAKrnzyrThgAjm6JDTu0fVgWXDlMGspodfoQ==
+
 fbjs-css-vars@^1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/fbjs-css-vars/-/fbjs-css-vars-1.0.2.tgz#216551136ae02fe255932c3ec8775f18e2c078b8"
@@ -2590,6 +2604,11 @@ posthtml@^0.16.4, posthtml@^0.16.5:
   dependencies:
     posthtml-parser "^0.11.0"
     posthtml-render "^3.0.0"
+
+process@^0.11.10:
+  version "0.11.10"
+  resolved "https://registry.yarnpkg.com/process/-/process-0.11.10.tgz#7332300e840161bda3e69a1d1d91a7d4bc16f182"
+  integrity sha512-cdGef/drWFoydD1JsMzuFf8100nZl+GT+yacc2bEced5f9Rjk4z+WtFUTBu9PhOi9j/jfmBPu0mMEY4wIdAF8A==
 
 promise@^7.1.1:
   version "7.3.1"
