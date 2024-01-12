@@ -1,5 +1,22 @@
 
-const userAccessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbiI6IjY0YmVjYWY3NDU5NDQzYjU3MmQ4Y2M2OCJ9.TlGmYVqCkwBkXDxzssZwCos-tlR7Hi43wPPJ3XqxIgA";
+const userAccessToken = "<REPLACE_WITH_USER_ACCESS_TOKEN>";
+
+export const retrieveTemplate = async (identifier) => {
+
+  const response = await fetch(`https://api-joy.joyfill.io/v1/templates/${identifier}`, {
+    method: 'GET',
+    mode: 'cors',
+    headers: {
+      Authorization: `Bearer ${userAccessToken}`,
+      'Content-Type': 'application/json'
+    },
+  });
+
+  const data = await response.json();
+
+  return data;
+
+}
 
 export const retrieveTemplates = async () => {
 
@@ -17,9 +34,26 @@ export const retrieveTemplates = async () => {
   return data;
 }
 
-export const retrieveDocuments = async (template) => {
+export const updateTemplate = async (identifier, template) => {
 
-  const response = await fetch(`https://api-joy.joyfill.io/v1/documents?template=${template.identifier}&page=1&limit=25`, {
+  const response = await fetch(`https://api-joy.joyfill.io/v1/templates/${identifier}`, {
+    method: 'POST',
+    mode:'cors',
+    headers: {
+      Authorization: `Bearer ${userAccessToken}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(template)
+  });
+
+  const data = await response.json();
+  return data;
+
+};
+
+export const retrieveDocuments = async (templateIdentifier) => {
+
+  const response = await fetch(`https://api-joy.joyfill.io/v1/documents?template=${templateIdentifier}&page=1&limit=25`, {
     method: 'GET',
     mode: 'cors',
     headers: {
@@ -50,9 +84,10 @@ export const retrieveDocument = async (identifier) => {
   return data;
 
 }
-export const updateDocument = async (doc) => {
 
-  const response = await fetch(`https://api-joy.joyfill.io/v1/documents/${doc.identifier}`, {
+export const updateDocument = async (identifier, doc) => {
+
+  const response = await fetch(`https://api-joy.joyfill.io/v1/documents/${identifier}`, {
     method: 'POST',
     mode:'cors',
     headers: {
@@ -67,9 +102,9 @@ export const updateDocument = async (doc) => {
 
 };
 
-export const updateDocumentChangelogs = async (doc, changelogs) => {
+export const updateDocumentChangelogs = async (identifier, changelogs) => {
 
-  const response = await fetch(`https://api-joy.joyfill.io/v1/documents/${doc.identifier}/changelogs`, {
+  const response = await fetch(`https://api-joy.joyfill.io/v1/documents/${identifier}/changelogs`, {
     method: 'POST',
     mode:'cors',
     headers: {
@@ -102,9 +137,9 @@ export const createDocument = async (doc) => {
 };
 
 
-export const createDocumentPDF = async (doc) => {
+export const createDocumentPDF = async (identifier) => {
 
-  const response = await fetch(`https://api-joy.joyfill.io/v1/documents/${doc.identifier}/exports/pdf`, {
+  const response = await fetch(`https://api-joy.joyfill.io/v1/documents/${identifier}/exports/pdf`, {
     method: 'POST',
     mode:'cors',
     headers: {

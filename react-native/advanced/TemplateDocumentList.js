@@ -13,12 +13,12 @@ const TemplateDocumentList = ({ template, onViewDocument }) => {
    */
   useEffect(() => {
 
-    const retrieve = async () => {
-      const res = await retrieveDocuments(template)
+    const handleRetrieveTemplateDocuments = async () => {
+      const res = await retrieveDocuments(template.identifier)
       setDocs(res.data);
     }
 
-    retrieve();
+    handleRetrieveTemplateDocuments();
 
   }, [])
 

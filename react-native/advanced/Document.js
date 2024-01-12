@@ -8,47 +8,52 @@ const screenWidth = Dimensions.get('window').width;
 
 function Document(props) {
 
+  const identifier = props.doc.identifier;
+
   const [doc, setDoc] = useState(props.doc);
   const [docChangelogs, setDocChangelogs] = useState([]);
 
-  /**
-   * Step 1: Save document changes
-   */
   const handleDocumentUpdate = async () => {
 
     /**
      * Update Option 1: Full document update/overwrite
      */
-    const updatedDoc = await updateDocument(doc);
+    const updatedDoc = await updateDocument(identifier, doc);
     setDoc(updatedDoc);
 
     /**
      * Update Option 2: Uncomment below to use changelog updates for multi-collaborator support. 
      * Learn more about changelog updates here: https://docs.joyfill.io/docs/changelogs
      */
-    //const updatedDoc = await updateDocumentChangelogs(doc, docChangelogs);
+    //const updatedDoc = await updateDocumentChangelogs(identifier, docChangelogs);
     //setDoc(updatedDoc);
     //setDocChangelogs([]);
 
     /**
      * PDF: Uncomment below to generate pdf download link
      */
-    //const downloadableLink = await createDocumentPDF(doc);
-    //console.log(downloadableLink);
+    //const downloadablePDFLink = await createDocumentPDF(identifier);
+    //console.log(downloadablePDFLink);
 
   };
 
   return (
     <View style={Styles.form}>
       <JoyDoc
-        navigation={{pages: false}}
         mode="fill"
         doc={doc}
         width={screenWidth}
-        onChange={(changelogs, doc) => {
-          console.log('>>>>>>>> onChange: ', changelogs, doc);
-          setDoc(doc);
+        onChange={(changelogs, data) => {
+
+          /**
+           * Changelogs represent the individual change that was made
+           * Data represents the entire data structure with all new changes applied.
+           */
+          console.log('>>>>>>>>: ', changelogs, data);
+
+          setDoc(data);
           setDocChangelogs(docChangelogs.concat(changelogs));
+
         }}
       />
       <View style={Styles.actions}>

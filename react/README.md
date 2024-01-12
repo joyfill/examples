@@ -7,6 +7,12 @@
 
 * Node v18+
 
+# Prerequisites
+
+* Complete [Setup Guide](https://docs.joyfill.io/docs/setup) 
+* Complete [React Guide](https://docs.joyfill.io/docs/react)
+* Review [Key Terminology](https://docs.joyfill.io/docs/key-terminology)
+
 # Getting Started 
 
 * **Step 1:** Read and Complete the [Joyfill React Guide](https://docs.joyfill.io/docs/react-sdk)
