@@ -14,26 +14,40 @@ export class JoyfillService {
 
   constructor() { }
 
-  async getTemplate(identifier: string): Promise<object> {
+  async getTemplate(identifier: string): Promise<any> {
 
-    const data = await fetch(`${this.url}/templates/${identifier}`, {
-      method: 'GET',
-      headers: this.headers
-    });
-    
-    return await data.json();
+    try {
+      const data = await fetch(`${this.url}/templates/${identifier}`, {
+        method: 'GET',
+        headers: this.headers
+      });
+
+      if (data.status !== 200) return null; 
+      
+      return await data.json();
+    } catch (error) {
+      console.error(error);
+    }
+
 
   }
 
-  async updateTemplate(identifier: string, data: object): Promise<object> {
+  async updateTemplate(identifier: string, data: object): Promise<any> {
     
-    const response = await fetch(`${this.url}/templates/${identifier}`, {
-      method: 'POST',
-      headers: this.headers,
-      body: JSON.stringify(data)
-    });
+    try {
+      const response = await fetch(`${this.url}/templates/${identifier}`, {
+        method: 'POST',
+        headers: this.headers,
+        body: JSON.stringify(data)
+      });
 
-    return await response.json();
+      if (response.status !== 200) return null; 
+
+      return await response.json();
+    } catch (error) {
+      console.error(error);
+    }
+    
 
   }
 

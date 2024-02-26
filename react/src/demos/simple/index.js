@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Loading from "../../Loading";
 
 import { JoyDoc } from '@joyfill/components';
 
@@ -8,7 +7,7 @@ import {
   updateTemplate
 } from '../../api.js';
 
-const identifier = '<REPLACE_YOUR_TEMPLATE_IDENTIFIER>';
+const identifier = '<REPLACE_TEMPLATE_IDENTIFIER>';
 
 function App() {
 
@@ -18,14 +17,14 @@ function App() {
   useEffect(() => {
     const handleRetrieveTemplate = async () => {
       const response = await retrieveTemplate(identifier);
-      setTemplate(response);
+      if (response) setTemplate(response);
     }
     handleRetrieveTemplate();
   }, []);
 
   const handleUpdateTemplate = async () => {
     const response = await updateTemplate(identifier, template);
-    setTemplate(response);
+    if (response) setTemplate(response);
   }
 
   return (

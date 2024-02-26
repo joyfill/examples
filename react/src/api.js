@@ -4,146 +4,222 @@ const apiBaseUrl = 'https://api-joy.joyfill.io';
 
 export const createTemplate = async (doc) => {
 
-  const response = await fetch(`${apiBaseUrl}/v1/templates`, {
-    method: 'POST',
-    mode:'cors',
-    headers: {
-      Authorization: `Bearer ${userAccessToken}`,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(doc)
-  });
+  try {
 
-  const data = await response.json();
-  return data;
+    const response = await fetch(`${apiBaseUrl}/v1/templates`, {
+      method: 'POST',
+      mode:'cors',
+      headers: {
+        Authorization: `Bearer ${userAccessToken}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(doc)
+    });
+
+    if (response.status !== 200) return null;
+
+    const data = await response.json();
+    return data;
+
+  } catch (e) {
+    console.log(e);
+  }
 
 };
 
 export const retrieveTemplate = async (identifier) => {
 
-  const response = await fetch(`${apiBaseUrl}/v1/templates/${identifier}`, {
-    method: 'GET',
-    mode: 'cors',
-    headers: {
-      Authorization: `Bearer ${userAccessToken}`,
-      'Content-Type': 'application/json'
-    },
-  });
+  try {
 
-  const data = await response.json();
-  return data;
+    const response = await fetch(`${apiBaseUrl}/v1/templates/${identifier}`, {
+      method: 'GET',
+      mode: 'cors',
+      headers: {
+        Authorization: `Bearer ${userAccessToken}`,
+        'Content-Type': 'application/json'
+      },
+    });
+
+    if (response.status !== 200) return null;
+
+    const data = await response.json();
+    return data;
+
+  } catch (e) {
+    console.log(e);
+  }
+
 }
 
 export const updateTemplate = async (identifier, template) => {
 
-  const response = await fetch(`${apiBaseUrl}/v1/templates/${identifier}`, {
-    method: 'POST',
-    mode:'cors',
-    headers: {
-      Authorization: `Bearer ${userAccessToken}`,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(template)
-  });
+  try {
 
-  const data = await response.json();
-  return data;
+    const response = await fetch(`${apiBaseUrl}/v1/templates/${identifier}`, {
+      method: 'POST',
+      mode:'cors',
+      headers: {
+        Authorization: `Bearer ${userAccessToken}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(template)
+    });
+
+    if (response.status !== 200) return null;
+
+    const data = await response.json();
+    return data;
+
+  } catch (e) {
+    console.log(e);
+  }
 
 };
 
 export const listTemplates = async () => {
 
-  const response = await fetch(`${apiBaseUrl}/v1/templates?page=1&limit=25`, {
-    method: 'GET',
-    mode:'cors',
-    headers: {
-      Authorization: `Bearer ${userAccessToken}`,
-      'Content-Type': 'application/json'
-    },
-  });
+  try {
 
-  const data = await response.json();
+    const response = await fetch(`${apiBaseUrl}/v1/templates?page=1&limit=25`, {
+      method: 'GET',
+      mode:'cors',
+      headers: {
+        Authorization: `Bearer ${userAccessToken}`,
+        'Content-Type': 'application/json'
+      },
+    });
 
-  return data;
+    if (response.status !== 200) return null;
+
+    const data = await response.json();
+    return data;
+
+  } catch (e) {
+    console.log(e);
+  }
+
 
 };
 
 export const listDocumentsForTemplate = async (templateIdentifier) => {
 
-  const response = await fetch(`${apiBaseUrl}/v1/documents?page=1&limit=25&stage=all&template=${templateIdentifier}`, {
-    method: 'GET',
-    mode: 'cors',
-    headers: {
-      Authorization: `Bearer ${userAccessToken}`,
-      'Content-Type': 'application/json'
-    },
-  });
+  try {
 
-  return await response.json();
+    const response = await fetch(`${apiBaseUrl}/v1/documents?page=1&limit=25&stage=all&template=${templateIdentifier}`, {
+      method: 'GET',
+      mode: 'cors',
+      headers: {
+        Authorization: `Bearer ${userAccessToken}`,
+        'Content-Type': 'application/json'
+      },
+    });
+
+    if (response.status !== 200) return null;
+
+    return await response.json();
+
+  } catch (e) {
+    console.log(e);
+  }
+
 
 }
 
 export const createDocumentPDF = async (identifier) => {
 
-  const response = await fetch(`${apiBaseUrl}/v1/documents/${identifier}/exports/pdf`, {
-    method: 'POST',
-    mode:'cors',
-    headers: {
-      Authorization: `Bearer ${userAccessToken}`,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({})
-  });
-  
+  try {
 
-  return await response.json();
+    const response = await fetch(`${apiBaseUrl}/v1/documents/${identifier}/exports/pdf`, {
+      method: 'POST',
+      mode:'cors',
+      headers: {
+        Authorization: `Bearer ${userAccessToken}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({})
+    });
+
+    if (response.status !== 200) return null;
+
+    return await response.json();
+
+  } catch (e) {
+    console.log(e);
+  }
+
 
 }
 
 export const retrieveDocument = async (identifier) => {
 
-  const response = await fetch(`${apiBaseUrl}/v1/documents/${identifier}`, {
-    method: 'GET',
-    mode: 'cors',
-    headers: {
-      Authorization: `Bearer ${userAccessToken}`,
-      'Content-Type': 'application/json'
-    },
-  });
+  try {
 
-  return await response.json();
+    const response = await fetch(`${apiBaseUrl}/v1/documents/${identifier}`, {
+      method: 'GET',
+      mode: 'cors',
+      headers: {
+        Authorization: `Bearer ${userAccessToken}`,
+        'Content-Type': 'application/json'
+      },
+    });
+
+    if (response.status !== 200) return null;
+
+    return await response.json();
+
+  } catch (e) {
+    console.log(e);
+  }
+
 }
 
 export const updateDocument = async (identifier, doc) => {
 
-  const response = await fetch(`${apiBaseUrl}/v1/documents/${identifier}`, {
-    method: 'POST',
-    mode:'cors',
-    headers: {
-      Authorization: `Bearer ${userAccessToken}`,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(doc)
-  });
+  try {
 
-  return await response.json();
+    const response = await fetch(`${apiBaseUrl}/v1/documents/${identifier}`, {
+      method: 'POST',
+      mode:'cors',
+      headers: {
+        Authorization: `Bearer ${userAccessToken}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(doc)
+    });
+
+    if (response.status !== 200) return null;
+
+    return await response.json();
+
+  } catch (e) {
+    console.log(e);
+  }
 
 };
 
 export const createDocument = async (doc) => {
 
-  const response = await fetch(`${apiBaseUrl}/v1/documents`, {
-    method: 'POST',
-    mode:'cors',
-    headers: {
-      Authorization: `Bearer ${userAccessToken}`,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(doc)
-  });
+  try {
 
-  const data = await response.json();
-  return data;
+    const response = await fetch(`${apiBaseUrl}/v1/documents`, {
+      method: 'POST',
+      mode:'cors',
+      headers: {
+        Authorization: `Bearer ${userAccessToken}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(doc)
+    });
+
+    if (response.status !== 200) return null;
+
+    const data = await response.json();
+    return data;
+
+  } catch (e) {
+    console.log(e);
+  }
+
 
 };
 
@@ -166,18 +242,28 @@ export const getDataUriForFileUpload = async (fileUpload) => {
 
 export const uploadFileAsync = async (documentId, dataUri, userAccessToken) => {
 
-  const response = await fetch(`${apiBaseUrl}/v1/documents/${documentId}/files/datauri`, {
-    method: 'POST', // *GET, POST, PUT, DELETE, etc.
-    mode: 'no-cors', // no-cors, *cors, same-origin
-    headers: {
-      Authorization: `Bearer ${userAccessToken}`,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ file: dataUri }) // body data type must match "Content-Type" header
-  });
+  try {
 
-  const data = await response.json();
-  return data;
+    const response = await fetch(`${apiBaseUrl}/v1/documents/${documentId}/files/datauri`, {
+      method: 'POST', // *GET, POST, PUT, DELETE, etc.
+      mode: 'no-cors', // no-cors, *cors, same-origin
+      headers: {
+        Authorization: `Bearer ${userAccessToken}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ file: dataUri }) // body data type must match "Content-Type" header
+    });
+
+    if (response.status !== 200) return null;
+
+    const data = await response.json();
+    return data;
+
+  } catch (error) {
+
+    throw error;
+
+  }
 
 };
 
@@ -194,6 +280,8 @@ export const convertPDFPagesToBase64Async = async (dataUri, userAccessToken) => 
       },
       body: JSON.stringify({ file: dataUri }) // body data type must match "Content-Type" header
     });
+
+    if (response.status !== 200) return null;
 
     return await response.json();
 
