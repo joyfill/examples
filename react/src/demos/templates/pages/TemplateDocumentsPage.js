@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Card, Space, Table, Button } from 'antd';
+import { Alert, Card, Space, Table, Button } from 'antd';
 import { listDocumentsForTemplate } from '../../../api';
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -26,7 +26,7 @@ const TemplateDocumentsPage = () => {
 
     const handleListTemplateDocuments = async () => {
       const response = await listDocumentsForTemplate(templateIdentifier); 
-      setDocs(response.data);
+      if (response) setDocs(response.data);
       setLoading(false);
     }
 
@@ -34,10 +34,19 @@ const TemplateDocumentsPage = () => {
 
   }, [templateIdentifier]);
 
-  const columns = [];
+  if (!docs) return (
+    <div style={{padding: '24px'}}>
+      <Alert
+        message="No Documents Found"
+        description="Fill out templates to create documents."
+        type="info"
+      />
+    </div>
+  );
+
   const rows = [];
 
-  docs.forEach((doc, i) => {
+  docs?.forEach((doc, i) => {
 
     rows.push({
       key: doc._id,

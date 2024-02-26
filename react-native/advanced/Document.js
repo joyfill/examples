@@ -19,14 +19,14 @@ function Document(props) {
      * Update Option 1: Full document update/overwrite
      */
     const updatedDoc = await updateDocument(identifier, doc);
-    setDoc(updatedDoc);
+    if (updateDoc) setDoc(updatedDoc);
 
     /**
      * Update Option 2: Uncomment below to use changelog updates for multi-collaborator support. 
      * Learn more about changelog updates here: https://docs.joyfill.io/docs/changelogs
      */
     //const updatedDoc = await updateDocumentChangelogs(identifier, docChangelogs);
-    //setDoc(updatedDoc);
+    //if (updateDoc) setDoc(updatedDoc);
     //setDocChangelogs([]);
 
     /**

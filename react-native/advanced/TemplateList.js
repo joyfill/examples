@@ -15,7 +15,7 @@ const TemplateList = ({ onViewDocument, onViewTemplateDocuments }) => {
 
     const handleRetrieveTemplates = async () => {
       const res = await retrieveTemplates()
-      setTemplates(res.data);
+      if (res) setTemplates(res.data);
     }
 
     handleRetrieveTemplates();

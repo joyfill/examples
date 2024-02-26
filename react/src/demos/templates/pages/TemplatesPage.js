@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Space, Table, Card, Button } from 'antd';
+import { Alert, Space, Table, Card, Button } from 'antd';
 import { listTemplates, createDocument } from '../../../api';
 import { useNavigate } from "react-router-dom";
 import { getDocumentFromTemplate } from '@joyfill/components';
@@ -27,7 +27,7 @@ const TemplatesPage = () => {
 
     const handleListTemplates = async () => {
       const response = await listTemplates(); 
-      setTemplates(response.data);
+      if (response) setTemplates(response.data);
       setLoading(false);
     }
 
@@ -65,7 +65,17 @@ const TemplatesPage = () => {
 
   }
 
-  const dataSource = templates.map((template) => {
+  if (!templates) return (
+    <div style={{padding: '24px'}}>
+      <Alert
+        message="No Templates Loading"
+        description="Please complete the required steps documented in README file"
+        type="warning"
+      />
+    </div>
+  );
+
+  const dataSource = templates?.map((template) => {
     return {
       key: template.identifier,
       id: template.identifier,
