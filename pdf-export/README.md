@@ -1,6 +1,6 @@
-Joyfill PDF SDK can be used generate PDF files that can be stored directly in your own system, S3, or some other file storage from a Joyfill Form.
+Joyfill PDF SDK is used to generate PDF files that can be stored directly in your own system, S3, or some other file storage.
 
-The Joyfill Export SDK is rendered in a web page and used with a headless browser like Puppeteer, Selenium, etc. to convert the web page into a PDF file.
+The Joyfill Export SDK is rendered in a web page and used along with a headless browser like Puppeteer, Selenium, etc. to convert the web page into a PDF file.
 
 This example project walks you throw how to use Node.js, Puppeteer, and Joyfill PDF SDK to generate a local PDF file from a Joyfill Form.
 
