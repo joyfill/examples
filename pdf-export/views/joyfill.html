@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Joyfill PDFs</title>
+    <base href=".">
+    <meta charset="UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/@joyfill/components@3.6.1-beta.20/dist/joyfill.min.js"></script>
+    <style>
+      body {
+        margin: 0px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="joyfill"></div>
+    <script>
+
+      const TEMPLATE_IDENTIFIER = 'template_65e2186f0559018538e7658e'//'<REPLACE_YOUR_TEMPLATE_IDENTIFIER>';
+      const USER_ACCESS_TOKEN = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbiI6IjY0YmVjYWY3NDU5NDQzYjU3MmQ4Y2M2OCJ9.TlGmYVqCkwBkXDxzssZwCos-tlR7Hi43wPPJ3XqxIgA';//'<REPLACE_USER_ACCESS_TOKEN>';
+
+      const initJoyfill = async () => {
+
+        /**
+         * Step 1: Retrieve template from Joyfill API. You can also use your own internal API to load the form data if you're self hosting.
+         *
+         * Load Data Server Side - All data can be loaded server side instead of client side. See README.md to learn more.
+         */
+        const response = await fetch(`https://api-joy.joyfill.io/v1/templates/${TEMPLATE_IDENTIFIER}`, {
+          method: 'GET',
+          mode: 'cors',
+          headers: {
+            Authorization: `Bearer ${USER_ACCESS_TOKEN}`,
+            'Content-Type': 'application/json'
+          },
+        });
+
+        if (response.status !== 200) alert('Oops...request failed')
+        const template = await response.json();
+
+        Joyfill.JoyDocExporter(
+          document.getElementById('joyfill'),
+          {
+            doc: window.template,
+          }
+        );
+
+      }
+
+      initJoyfill();
+
+    </script>
+  </body>
+</html>
