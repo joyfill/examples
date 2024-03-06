@@ -53,16 +53,6 @@ app.get('/pdf', async function(req, res, next) {
     await page.setUserAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36");
     await page.setViewport({ width: 816, height: 1056})
 
-    /**
-     *
-     * Uncomment block of code to use Puppeteer Load Data via Backend Option. See README to learn more
-     *
-    const template = await JoyfillAPI.retrieveTemplate();
-    await page.evaluateOnNewDocument((data) => {
-      window.template = data;
-    }, template)
-    */
-
     await page.goto(`${NGROK_URL}/joyfill_pdf`, {
       waitUntil: 'networkidle0'
     })
@@ -94,7 +84,6 @@ app.get('/pdf', async function(req, res, next) {
 
   } finally {
 
-    console.log('>>>>>>>>>>> closing browser');
     if (browser) await browser.close();
 
   }
