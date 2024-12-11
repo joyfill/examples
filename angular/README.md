@@ -13,7 +13,7 @@ Head over to [Joyfill developer docs](https://docs.joyfill.io/docs/quick-start) 
 * Replace `<REPLACE WITH YOUR USER ACCESS TOKEN>` in file `joyfill.service.ts` with the user access token from the Joyfill Quick Start guide.
 * Replace `<REPLACE WITH YOUR TEMPLATE IDENTIFIER>` in file `app.component.ts` with the template identifier from the Joyfill Quick Start guide.
 * Run `npm install`
-* Run `ng servce`
+* Run `ng serve`
 
 ## General
 
