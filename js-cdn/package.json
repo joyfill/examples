@@ -1,0 +1,17 @@
+{
+  "name": "joyfill-vanilla-js-cdn-example",
+  "private": true,
+  "version": "1.0.0",
+  "source": "./src/index.html",
+  "homepage": "https://joyfill.io/",
+  "author": "Joyfill",
+  "scripts": {
+    "start": "parcel",
+    "build": "parcel build"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "parcel": "^2.8.2"
+  },
+  "license": "SEE LICENSE IN LICENSE.txt"
+}

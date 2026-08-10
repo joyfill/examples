@@ -1,0 +1,101 @@
+{
+  "document": {
+    "_id": "example_id",
+    "type": "template",
+    "stage": "draft",
+    "metadata": {},
+    "identifier": "example_identifier",
+    "name": "New Template",
+    "createdOn": 1778785506989,
+    "files": [
+        {
+            "_id": "6a061c8e7feea10c3c58c2ad",
+            "metadata": {},
+            "name": "New File",
+            "version": 1,
+            "styles": {
+                "margin": 4
+            },
+            "pages": [
+                {
+                    "name": "New Page",
+                    "fieldPositions": [
+                        {
+                            "field": "6a061c941cd28952270e91de",
+                            "displayType": "original",
+                            "width": 8,
+                            "height": 5,
+                            "x": 0,
+                            "y": 0,
+                            "fontSize": 28,
+                            "fontWeight": "bold",
+                            "textAlign": "center",
+                            "_id": "6a061c94a1c3b108c13049a3",
+                            "type": "block"
+                        },
+                        {
+                            "field": "6a061cccc7647577433ed20d",
+                            "displayType": "original",
+                            "width": 8,
+                            "height": 32,
+                            "x": 0,
+                            "y": 5,
+                            "_id": "6a061ccc93b630672ce7364c",
+                            "type": "textarea"
+                        }
+                    ],
+                    "hidden": false,
+                    "width": 816,
+                    "height": 1056,
+                    "cols": 8,
+                    "rowHeight": 8,
+                    "layout": "grid",
+                    "presentation": "normal",
+                    "margin": 0,
+                    "padding": 24,
+                    "borderWidth": 0,
+                    "_id": "6a061c8ece6cf7d3c40409f8",
+                    "metadata": {}
+                }
+            ],
+            "pageOrder": [
+                "6a061c8ece6cf7d3c40409f8"
+            ],
+            "views": []
+        }
+    ],
+    "fields": [
+        {
+            "type": "block",
+            "_id": "6a061c941cd28952270e91de",
+            "identifier": "field_6a061c941cd28952270e91de",
+            "title": "Heading Text",
+            "description": "",
+            "value": "Example PDF",
+            "required": false,
+            "tipTitle": "",
+            "tipDescription": "",
+            "tipVisible": false,
+            "metadata": {},
+            "file": "6a061c8e7feea10c3c58c2ad"
+        },
+        {
+            "type": "textarea",
+            "_id": "6a061cccc7647577433ed20d",
+            "identifier": "field_6a061cccc7647577433ed20d",
+            "title": "Message",
+            "description": "",
+            "value": "You did it!",
+            "required": false,
+            "tipTitle": "",
+            "tipDescription": "",
+            "tipVisible": false,
+            "metadata": {},
+            "file": "6a061c8e7feea10c3c58c2ad"
+        }
+    ],
+    "deleted": false,
+    "categories": []
+  },
+  "timezone": "America/New_York"
+}
