@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Joyfill for Javascript Example</title>
+    <base href=".">
+    <meta charset="UTF-8" />
+    <script src=" https://cdn.jsdelivr.net/npm/@joyfill/components@latest/dist/joyfill.min.js"></script>
+  </head>
+  <body>
+    <div id="joyfill"></div>
+    <script>
+
+      const userAccessToken = '<REPLACE_USER_ACCESS_TOKEN>';
+      const apiBaseUrl = 'https://api-joy.joyfill.io';
+
+      const retrieveTemplate = async (identifier) => {
+
+        try {
+
+          const response = await fetch(`${apiBaseUrl}/v1/templates/${identifier}`, {
+            method: 'GET',
+            mode: 'cors',
+            headers: {
+              Authorization: `Bearer ${userAccessToken}`,
+              'Content-Type': 'application/json'
+            },
+          });
+
+          if (response.status !== 200) return null;
+
+          const data = await response.json();
+          return data;
+
+        } catch (e) {
+          console.log(e);
+        }
+
+      }
+
+      const initJoyfill = async () => {
+
+        const identifier = '<REPLACE_YOUR_TEMPLATE_IDENTIFIER>';
+
+        const template = await retrieveTemplate(identifier);
+
+        Joyfill.JoyDoc(
+          document.getElementById('joyfill'),
+          {
+            doc: template,
+            mode: 'edit',
+            onChange: (changelogs, doc) => {
+
+              /**
+               * Changelogs represent the individual change that was made
+               * Data represents the entire data structure with all new changes applied.
+               */
+              console.log('onChange: ', changelogs, doc);
+            }
+          }
+        );
+
+      }
+
+      initJoyfill();
+
+    </script>
+  </body>
+</html>
